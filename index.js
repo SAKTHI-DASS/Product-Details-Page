@@ -17,6 +17,7 @@ var productData = {
   brand: "United Colors of Benetton",
   price: 2599,
 };
+
 //Create a section for the contents
 const section = document.createElement("section");
 section.id = "product";
@@ -94,12 +95,14 @@ for (el of photos) {
   count++;
   previewImage.appendChild(image);
 }
+
 //remove class name "active" from Image
 function mj() {
   const restImages = document.querySelectorAll(".previewImg img");
   debugger;
   restImages.forEach((x) => x.classList.remove("active"));
 }
+
 //Button Element
 const cartDiv = document.createElement("div");
 cartDiv.className = "btn";
@@ -109,6 +112,26 @@ const cartButton = document.createElement("button");
 cartButton.id = "add-to-cart";
 cartButton.innerText = "Add to Cart";
 cartDiv.appendChild(cartButton);
+
+cartButton.addEventListener("click", function () {
+  window.location.href =
+    "https://shoplane.netlify.app/product.html?product_id=1";
+});
+
+cartButton.addEventListener("mouseenter", function () {
+  // Create and append message element
+  const message = document.createElement("span");
+  message.innerText = "Click here to move shoplane";
+  cartButton.appendChild(message);
+});
+cartButton.addEventListener("mouseleave", function () {
+  // Remove the message element
+  const message = cartButton.querySelector("span");
+  if (message) {
+    cartButton.removeChild(message);
+    messageAppended = false;
+  }
+});
 
 //Append left and right column to the section and section to the body
 leftColumn.appendChild(productImage);
